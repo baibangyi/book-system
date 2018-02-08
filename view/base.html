@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<!-- 适配 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- X-UA-Compatible针对IE8的特殊文件标志 -->
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>图书管理系统</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/uikit/3.0.0-beta.23/css/uikit.min.css">
+</head>
+<body>
+	<header class="uk-background-primary uk-light">
+        <nav class="uk-navbar uk-navbar-container uk-navbar-transparent">
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-item uk-logo" href="/">图书管理</a>
+            </div>
+        </nav>
+    </header>
+	{% block body %}
+	{% endblock %}
+	<script type="text/javascript" src="https://cdn.bootcss.com/uikit/3.0.0-beta.23/js/uikit.min.js"></script>
+</body>
+</html>
