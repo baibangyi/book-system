@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const BookModule = require('../opretions/opretions')
 
-router.get('/', function(req.res) {
+router.get('/', function(req,res) {
 	BookModule.getBooks().then((books)=>{
 		res.render('index',{books})
 	})
