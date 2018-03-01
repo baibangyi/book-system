@@ -6,7 +6,7 @@ const app = express()
 const routes = require('./routes')
 
 app.use(express.static(path.join(__dirname, 'public')))
-nunjucks.configure(path.join(__dirname, 'view'), {
+nunjucks.configure(path.join(__dirname, 'views'), {
     autoescape: true,
     express: app
 })
