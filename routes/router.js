@@ -1,38 +1,47 @@
 const express = require('express')
 const router = express.Router()
-const BookModule = require('../opretions/opretions')
+const BookModel = require('../opretions/opretions')
 
-router.get('/', function(req,res) {
-	BookModule.getBooks().then((books)=>{
-		res.render('index',{books})
-	})
+router.get('/',function (req,res) {
+    BookModel.getBooks().then((books)=>{
+        res.render('index',{books})
+    })
 })
-router.get('/add', function(req,res) {
-	res.render('add')
+
+router.get('/add', (req,res)=> {
+    res.render('add')
 })
-router.post('/add',function(req,res) {
-	let book = req.body
-	BookModule.addBook(book).then((result)=>{
-		res.redirect('/')
-	})
+
+router.post('/add', (req,res)=> {
+    let book=req.body;
+    BookModel.addBook(book).then((result)=>{
+        res.redirect('/')
+    })
 })
-router.get('/:bookId/remove',function(req,res) {
-	BookModule.delBook(req.param.bookId).then((book)=>{
-		res.redirect('/')
-	})
+
+router.get('/:bookId/remove',(req,res)=>{
+    BookModel.delBook(req.params.bookId).then((book)=>{
+        res.redirect('/')
+  })
 })
-router.get('/:bookId/edit',function(req,res){
-	let data = req.body
-	BookModule.editBook(req.param.bookId,data).then((book) =>{
-		res.render('edit',{
-			book,
-			bookId:req.params.bookId
-		})
-	})
+
+router.get('/:bookId/edit',(req,res)=>{
+    let book=req.body;
+    BookModel.editBook(req.params.bookId,book)
+        .then((book)=>{
+            res.render('edit', {
+            book,
+            bookid: req.params.bookId
+        })
+    })
 })
-router.post('/:bookId/edit',function(req,res) {
-	let data = req.body
-	BookModule.editBook(req.param.bookId,data).then((result)=>{
-		res.redirect('/')
-	})
+
+router.post('/:bookId/edit', (req, res) => {
+    let book = req.body
+    BookModel.editBook(req.params.bookId, book)
+    .then((result)=>{
+    res.redirect('/')
 })
+})
+
+module.exports = router
