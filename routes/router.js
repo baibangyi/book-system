@@ -4,6 +4,7 @@ const BookModel = require('../opretions/opretions')
 
 router.get('/',function (req,res) {
     BookModel.getBooks().then((books)=>{
+        console.log('找到书籍信息')
         res.render('index',{books})
     })
 })
@@ -16,12 +17,14 @@ router.post('/add', (req,res)=> {
     let book=req.body;
     BookModel.addBook(book).then((result)=>{
         res.redirect('/')
+        console.log('添加成功')
     })
 })
 
 router.get('/:bookId/remove',(req,res)=>{
     BookModel.delBook(req.params.bookId).then((book)=>{
         res.redirect('/')
+        console.log('删除成功')
   })
 })
 
@@ -41,6 +44,7 @@ router.post('/:bookId/edit', (req, res) => {
     BookModel.editBook(req.params.bookId, book)
     .then((result)=>{
     res.redirect('/')
+    console.log('编辑成功')
 })
 })
 

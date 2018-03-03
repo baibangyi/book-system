@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise=global.Promise;
-mongoose.connect('mongodb://127.0.0.1:27017/book')
+mongoose.connect('mongodb://localhost:27017/book')
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -8,9 +8,18 @@ db.once('open', function() {
 });
 
 var bookSchema = new mongoose.Schema({
-  name: String,
-  summary: String,
-  price: Number
+  title:{
+    unique:true,
+    type:'String'
+  },
+  summary:'String',
+  price:'Number',
+  meta:{
+    createAt:{
+        type:Date,
+        default:Date.now()
+    }
+  }
 });
 
 exports.Book=db.model('Book',bookSchema);
